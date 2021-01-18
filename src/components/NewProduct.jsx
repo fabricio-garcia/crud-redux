@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // Actions from redux
 import { createNewProductAction } from '../actions/productActions';
 
 export default function NewProduct() {
+  // Component's state
+  const [name, saveName] = useState('');
+  const [price, savePrice] = useState(0);
+
+  // Use dispatch and create a new function
   const dispatch = useDispatch();
 
   // Action call to productAction
-  const addProduct = () => dispatch(createNewProductAction());
+  const addProduct = product => dispatch(createNewProductAction(product));
 
   const submitNewProduct = e => {
     e.preventDefault();
-    addProduct();
+
+    // Form validation
+    if (name.trim() === '' || price <= 0) {
+      return;
+    }
+
+    // Create a new product
+    addProduct({name, price});
   };
 
   return (
@@ -26,11 +38,24 @@ export default function NewProduct() {
               <form onSubmit={submitNewProduct}>
                 <div className="form-group">
                   <label htmlFor="">Name</label>
-                  <input type="text" className="form-control" name="name" />
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="name"
+                    value={name}
+                    onChange={e => saveName(e.target.value)}
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="">Price</label>
-                  <input type="number" className="form-control" name="price" />
+                  <input
+                    type="number"
+                    min="0"
+                    className="form-control"
+                    name="price"
+                    value={price}
+                    onChange={e => savePrice(Number(e.target.value))}
+                  />
                 </div>
                 <button
                   className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
