@@ -3,7 +3,7 @@ import { ADD_PRODUCT, ADD_PRODUCT_SUCCESS, ADD_PRODUCT_ERROR } from '../types';
 // Each reducer has it own state
 const initialState = {
   products: [],
-  errors: null,
+  error: null,
   loading: false,
 };
 
@@ -21,11 +21,12 @@ export default function (state = initialState, action) {
         loading: false,
         products: [...state.products, action.payload],
       };
-      case ADD_PRODUCT_ERROR:
-        return {
-          ...state,
-          loading: action.payload
-        }
+    case ADD_PRODUCT_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }

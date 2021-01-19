@@ -11,6 +11,11 @@ export default function NewProduct() {
   // Use dispatch and create a new function
   const dispatch = useDispatch();
 
+  // Access to state in the store
+  const loading = useSelector(state => state.products.loading);
+  const error = useSelector(state => state.products.error);
+  console.log(loading);
+
   // Action call to productAction
   const addProduct = product => dispatch(createNewProductAction(product));
 
@@ -23,7 +28,7 @@ export default function NewProduct() {
     }
 
     // Create a new product
-    addProduct({name, price});
+    addProduct({ name, price });
   };
 
   return (
@@ -63,6 +68,12 @@ export default function NewProduct() {
                   Add
                 </button>
               </form>
+              {loading ? <p>Loading . . . </p> : null}
+              {error ? (
+                <p className="alert alert-danger p2 mt-4 text-center">
+                  An error has occurred
+                </p>
+              ) : null}
             </div>
           </div>
         </div>
