@@ -24,6 +24,11 @@
       "name": "Strawberry Juice",
       "price": "200",
       "id": 5
+    },
+    {
+      "name": "Pizza",
+      "price": 20,
+      "id": 6
     }
   ]
 }
