@@ -21,6 +21,11 @@ export default function (state = initialState, action) {
         loading: false,
         products: [...state.products, action.payload],
       };
+      case ADD_PRODUCT_ERROR:
+        return {
+          ...state,
+          loading: action.payload
+        }
     default:
       return state;
   }

@@ -10,7 +10,10 @@ const addProductSuccess = product => ({
   payload: product,
 });
 
-const addProductError = () => ({});
+const addProductError = (errorState) => ({
+  type: ADD_PRODUCT_ERROR,
+  payload: errorState,
+});
 
 // Create new products
 export function createNewProductAction(product) {
