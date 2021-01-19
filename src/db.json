@@ -34,6 +34,16 @@
       "name": "Pizza",
       "price": 20,
       "id": 7
+    },
+    {
+      "name": "Pizza",
+      "price": 20,
+      "id": 8
+    },
+    {
+      "name": "Apple Juice",
+      "price": 33,
+      "id": 9
     }
   ]
 }

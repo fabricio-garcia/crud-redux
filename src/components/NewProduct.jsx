@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // Actions from redux
 import { createNewProductAction } from '../actions/productActions';
 
-export default function NewProduct() {
+export default function NewProduct({history}) {
   // Component's state
   const [name, saveName] = useState('');
   const [price, savePrice] = useState(0);
@@ -29,6 +29,9 @@ export default function NewProduct() {
 
     // Create a new product
     addProduct({ name, price });
+
+    // Redirect home afterwards
+    history.push('/');
   };
 
   return (
