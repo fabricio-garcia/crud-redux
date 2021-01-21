@@ -1,4 +1,11 @@
-import { ADD_PRODUCT, ADD_PRODUCT_SUCCESS, ADD_PRODUCT_ERROR } from '../types';
+import {
+  ADD_PRODUCT,
+  ADD_PRODUCT_SUCCESS,
+  ADD_PRODUCT_ERROR,
+  START_PRODUCTS_DOWNLOAD,
+  PRODUCTS_DOWNLOAD_SUCCESS,
+  PRODUCTS_DOWNLOAD_ERROR,
+} from '../types';
 import axiosClient from '../config/axios';
 import Swal from 'sweetalert2';
 
@@ -15,6 +22,11 @@ const addProductSuccess = product => ({
 const addProductError = errorState => ({
   type: ADD_PRODUCT_ERROR,
   payload: errorState,
+});
+
+const downloadProducts = () => ({
+  type: START_PRODUCTS_DOWNLOAD,
+  payload: true,
 });
 
 // Create new products
@@ -40,5 +52,12 @@ export function createNewProductAction(product) {
         text: 'There was an error, try again later',
       });
     }
+  };
+}
+
+// Download products action
+export function downloadProductsAction() {
+  return async dispatch => {
+    dispatch(downloadProducts());
   };
 }

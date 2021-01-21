@@ -1,6 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { downloadProductsAction } from '../actions/productActions';
 
 export default function Products() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Query API
+    const loadProducts = () => dispatch(downloadProductsAction());
+    loadProducts();
+  }, []);
+
   return (
     <>
       <h2 className="text-center my-5">Product List</h2>
