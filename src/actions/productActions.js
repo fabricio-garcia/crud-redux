@@ -29,6 +29,15 @@ const downloadProducts = () => ({
   payload: true,
 });
 
+const downloadProductsSuccess = products => ({
+  type: PRODUCTS_DOWNLOAD_SUCCESS,
+  payload: products,
+});
+
+const downloadProductsError = () => ({
+  type: PRODUCTS_DOWNLOAD_ERROR,
+});
+
 // Create new products
 export function createNewProductAction(product) {
   return async dispatch => {
@@ -59,5 +68,13 @@ export function createNewProductAction(product) {
 export function downloadProductsAction() {
   return async dispatch => {
     dispatch(downloadProducts());
+
+    try {
+      const result = await axiosClient.get('/products');
+      dispatch(downloadProductsSuccess(result.data));
+    } catch (error) {
+      dispatch(downloadProductsError());
+      console.log(error);
+    }
   };
 }
