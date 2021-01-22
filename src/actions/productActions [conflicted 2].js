@@ -80,4 +80,8 @@ export function downloadProductsAction() {
 }
 
 // Select and delete products
-
+export function deleteProductAction(id) {
+  return async (dispatch) => {
+    dispatch(getProductDelete())
+  }
+}
