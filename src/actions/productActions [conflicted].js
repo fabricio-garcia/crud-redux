@@ -5,9 +5,6 @@ import {
   START_PRODUCTS_DOWNLOAD,
   PRODUCTS_DOWNLOAD_SUCCESS,
   PRODUCTS_DOWNLOAD_ERROR,
-  GET_PRODUCT_DELETE,
-  PRODUCT_DELETED_SUCCESS,
-  PRODUCT_DELETED_ERROR,
 } from '../types';
 import axiosClient from '../config/axios';
 import Swal from 'sweetalert2';
@@ -39,20 +36,6 @@ const downloadProductsSuccess = products => ({
 
 const downloadProductsError = () => ({
   type: PRODUCTS_DOWNLOAD_ERROR,
-});
-
-const getProductDelete = id => ({
-  type: GET_PRODUCT_DELETE,
-  payload: id,
-});
-
-const deleteProductSuccess = () => ({
-  type: PRODUCT_DELETED_SUCCESS,
-});
-
-const deleteProductError = () => ({
-  type: PRODUCT_DELETED_ERROR,
-  payload: true,
 });
 
 // Create new products
@@ -96,19 +79,5 @@ export function downloadProductsAction() {
   };
 }
 
-// Select and delete a product
-export function deleteProductAction(id) {
-  return async dispatch => {
-    dispatch(getProductDelete(id));
+// Select and delete products
 
-    try {
-      await axiosClient.delete(`/products/${id}`);
-      dispatch(deleteProductSuccess());
-      // If deleted then show alert
-      Swal.fire('Deleted!', 'Product deleted.', 'success');
-    } catch (error) {
-      console.log(error);
-      dispatch(deleteProductError());
-    }
-  };
-}

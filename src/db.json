@@ -1,21 +1,6 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "Carrot Juice",
-      "price": "31111"
-    },
-    {
-      "id": 2,
-      "name": "Orange Juice",
-      "price": "1"
-    },
-    {
-      "name": "Orange Juice",
-      "price": "300",
-      "id": 3
-    },
-    {
       "name": "Rib Eye 800g",
       "price": "200",
       "id": 4
