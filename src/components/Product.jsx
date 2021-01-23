@@ -48,7 +48,7 @@ const Product = ({ product }) => {
           type="button"
           className="btn btn-primary mr-2"
           onClick={() => redirectEditProduct(product)}>
-          Editar
+          Edit
         </button>
         <button
           type="button"
